@@ -55,6 +55,9 @@ class Browser:
         except NoSuchElementException:
             return None
 
+    def find_meta(self, key, value, elem=None, waittime=0):
+        return self.find_one("meta["+key+"=\""+value+"\"]", elem, waittime)
+
     def find(self, css_selector, elem=None, waittime=0):
         obj = elem or self.driver
 
@@ -87,12 +90,12 @@ class Browser:
 
     def open_new_tab(self, url):
         self.driver.execute_script("window.open('%s');" %url)
-        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.driver.switch_to.window(self.driver.window_handles[len(self.driver.window_handles)-1])
 
     def close_current_tab(self):
         self.driver.close()
 
-        self.driver.switch_to.window(self.driver.window_handles[0])
+        self.driver.switch_to.window(self.driver.window_handles[len(self.driver.window_handles)-1])
 
     def __del__(self):
         try:

@@ -1,3 +1,8 @@
+# Purpose
+Get latitude & longitude from IG.
+
+# Original README below
+
 # Instagram Crawler [![Build Status](https://travis-ci.org/huaying/instagram-crawler.svg?branch=master)](https://travis-ci.org/huaying/instagram-crawler)
 
 Below is what you can do with this program:

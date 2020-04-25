@@ -189,6 +189,16 @@ def fetch_details(browser, dict_post):
     if username:
         dict_post["username"] = username.text
     if location:
+        # Get latitude & longitude from IG.
+        browser.open_new_tab(location.get_attribute("href"))
+        latitude = browser.find_meta("property", "place:location:latitude", waittime=100)
+        longitude = browser.find_meta("property", "place:location:longitude", waittime=100)
+        if latitude:
+            dict_post["latitude"] = latitude.get_attribute("content")
+        if longitude:
+            dict_post["longitude"] = longitude.get_attribute("content")
+        browser.close_current_tab()
+        # End
         dict_post["location"] = location.text
 
     fetch_initial_comment(browser, dict_post)
